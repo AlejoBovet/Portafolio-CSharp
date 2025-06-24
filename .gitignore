@@ -1,0 +1,46 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos de usuario de Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de Visual Studio
+.vs/
+*.vcxproj.user
+
+# Archivos de paquetes NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Archivos de publicación
+publish/
+*.Publish.xml
+
+# Archivos de log y temporales
+*.log
+*.tmp
+
+# Archivos de configuración local
+appsettings.Development.json
+
+# Archivos generados por Rider
+.idea/
+*.sln.iml
+
+# Archivos de test y cobertura
+TestResults/
+*.coverage
+*.coveragexml
+
+# Otros archivos a ignorar
+*.dbmdl
+*.dbproj.schemaview
+*.pdb
+*.cache
+*.mdb
+_ReSharper*/
