@@ -54,13 +54,13 @@ namespace AgendaDeContactos
                         VerContactos();
                         break;
                     case 2:
-                        //AgregarContacto();
+                        AgregarContacto();
                         break;
                     case 3:
-                        //EliminarContactoDesdeMenu();
+                        EliminarContactoDesdeMenu();
                         break;
                     case 4:
-                        //EditarContactoDesdeMenu();
+                        EditarContactoDesdeMenu();
                         break;
                     case 5:
                         Console.WriteLine("Agenda cerrada. ¡Hasta luego!");
@@ -82,7 +82,7 @@ namespace AgendaDeContactos
 
             if (_contactos.Count > 0)
             {
-                // Hay contactos
+                
                 foreach (var c in _contactos)
                 {
                     Console.WriteLine($"Clave: {c.Key} - {c.Value}");
@@ -90,7 +90,7 @@ namespace AgendaDeContactos
             }
             else
             {
-                // No hay contactos
+                
                 Console.WriteLine("No hay contactos en la agenda.");
             }
             
@@ -98,36 +98,110 @@ namespace AgendaDeContactos
 
         private void AgregarContacto()
         {
-            
+            Console.Clear();
             Console.WriteLine("Ingrese Los datos del nuevo contacto");
-
-            Console.Write("Nombre");
-            string nombre = Console.ReadLine();
-
-            Console.Write("Ingrese el celular: ");
-            int celular = int.Parse(Console.ReadLine());
-
-            Console.Write("Ingrese el email: ");
-            string email = Console.ReadLine();
-
 
             try 
             {
+                int numeroContactos = _contactos.Count + 1;
 
+                Console.Write("Nombre: ");
+                string nombre = Console.ReadLine();
 
+                Console.Write("Ingrese el celular: ");
+                string celular = Console.ReadLine();
+
+                Console.Write("Ingrese el email: ");
+                string email = Console.ReadLine();
 
                 Contacto contacto = new Contacto(nombre,celular,email,DateTime.Now);
+                _contactos.Add(numeroContactos++,contacto);
+
 
             }
-            catch 
-            { 
-            
+            catch(Exception ex)  
+            {
+
+                Console.WriteLine($"Error al agregar conatcto: {ex.Message}");
             
             }
+            Console.WriteLine("Contacto creado correctamente");
 
+        }
 
+        private void EliminarContactoDesdeMenu()
+        {
+            Console.Clear();
+            try
+            {
+                Console.Write("\nIngrese el número de índice del contacto a eliminar: ");
+                if (int.TryParse(Console.ReadLine(), out int indice) && _contactos.ContainsKey(indice))
+                {
+                    _contactos.Remove(indice);
+                    Console.WriteLine("Contacto eliminado correctamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Índice inválido.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error al eliminar contacto");
+
+            }
+            
+        }
+
+        private void EditarContactoDesdeMenu()
+        {
+            Console.Clear();
+            int contactoIndice = 0;
+            try
+            {
+
+                Console.Write("\nIngrese el número de índice del contacto que desea editar: ");
+                if (int.TryParse(Console.ReadLine(), out int indice) && _contactos.ContainsKey(indice))
+                {
+                    Contacto contacto = _contactos[indice];
+
+                    Console.WriteLine("\nContacto actual:");
+                    Console.WriteLine(contacto);
+
+                    Console.Write("\nNuevo nombre (dejar vacío para no cambiar): ");
+                    string nombre = Console.ReadLine();
+
+                    Console.Write("Nuevo celular (dejar vacío para no cambiar): ");
+                    string celular = Console.ReadLine();
+
+                    Console.Write("Nuevo email (dejar vacío para no cambiar): ");
+                    string email = Console.ReadLine();
+
+                    contacto.Actualizar(nombre, celular, email);
+
+                    Console.WriteLine("\nContacto actualizado correctamente.");
+
+                }
+                else
+                {
+                    Console.WriteLine("Contacto no existe");
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("");
+
+            }
 
             
+
+
+
+
+
+
 
 
         }
