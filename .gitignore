@@ -47,3 +47,4 @@ _ReSharper*/
 
 # ignorar Config.cs de todos los proyectos
 *.Config.cs
+Tasks/AccesosDatos/DataBase/Config.cs
