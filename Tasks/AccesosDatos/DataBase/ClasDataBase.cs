@@ -7,7 +7,7 @@ using Microsoft.Data.SqlClient;
 
 namespace AccesosDatos.DataBase
 {
-    internal class ClasDataBase
+    public class ClasDataBase
     {
             private string connectionString;
             private SqlConnection connection;
